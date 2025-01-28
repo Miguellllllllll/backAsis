@@ -41,6 +41,7 @@ router.get('/download', async (req, res) => {
     ];
 
     attendances.forEach(attendance => {
+      attendance.dateTime = new Date(attendance.dateTime).toLocaleString();
       worksheet.addRow(attendance);
     });
 
