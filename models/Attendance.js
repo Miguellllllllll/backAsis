@@ -6,7 +6,7 @@ const formatDateTime = (date) => {
     const yy = String(date.getFullYear()).slice(-2);
     const hh = String(date.getHours()).padStart(2, '0');
     const min = String(date.getMinutes()).padStart(2, '0');
-    return `${dd}/${mm}/${yy}-${hh}:${min}`;
+    return `${dd}/${mm}/${yy}-${String(parseInt(hh)-5)}:${min}`;
 };
 
 const generateId = () => {
