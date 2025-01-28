@@ -1,14 +1,11 @@
 const mongoose = require('mongoose');
 
-const formatDateTime = (date) => {
-    const dd = String(date.getDate()).padStart(2, '0');
-    const mm = String(date.getMonth() + 1).padStart(2, '0'); // Enero es 0!
-    const yy = String(date.getFullYear()).slice(-2);
-    const hh = String(date.getHours()).padStart(2, '0');
-    const min = String(date.getMinutes()).padStart(2, '0');
-    return `${dd}/${mm}/${yy}-${String(parseInt(hh)-5)}:${min}`;
-};
+const moment = require('moment-timezone');
 
+// Almacenar en UTC
+const fechaUTC = moment().utc();  // Almacena la hora en UTC
+console.log(fechaUTC.format()); 
+const fechaLocal = fechaUTC.tz('America/Lima').format('DD/MM/YY hh:mm');
 const generateId = () => {
   return Math.floor(1000 + Math.random() * 9000); // Genera un número de 4 dígitos
 };
@@ -18,7 +15,7 @@ const attendanceSchema = new mongoose.Schema({
     name: { type: String, required: true },
     dateTime: { 
     type: String, 
-    default: () => formatDateTime(new Date()) 
+    default: () => fechaLocal 
     }
 });
 
