@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 
 const formatDateTime = (date) => {
-    const formatDateTime = (date) => {
-  const options = { timeZone: 'America/Lima', hour12: true, year: '2-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-  return new Intl.DateTimeFormat('es-PE', options).format(date).replace(',', ' -');
+    console.log(date)
+    const dd = String(date.getDate()).padStart(2, '0');
+    const mm = String(date.getMonth() + 1).padStart(2, '0'); // Enero es 0!
+    const yy = String(date.getFullYear()).slice(-2);
+    const hh = String(date.getHours()).padStart(2, '0');
+    const min = String(date.getMinutes()).padStart(2, '0');
+    return `${dd}/${mm}/${yy}-${hh}:${min}`;
 };
 
 };
